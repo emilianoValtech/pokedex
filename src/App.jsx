@@ -4,6 +4,7 @@ import Login from "./Components/Login";
 import Navbar from "./Components/Navbar";
 import { useEffect, useState } from "react";
 import { auth } from "./firebase";
+import Perfil from "./Components/Perfil";
 
 
 
@@ -11,8 +12,8 @@ import { auth } from "./firebase";
 function App() {
 
   const [firebaseUser, setFirebaseUser] = useState(false)
+  console.log(process.env)
   useEffect(()=>{
-    console.log(process.env);
     const fetchUser = () => {
       auth.onAuthStateChanged(user =>{
         if(user){
@@ -46,6 +47,7 @@ function App() {
           <Navbar />
           <Switch>
             <RutaPrivada component={Pokemones} path={'/'} exact/>
+            <RutaPrivada component={Perfil} path={'/perfil'} exact/>
             <Route component={Login} path={'/login'} exact/>
           </Switch>
         </div>
